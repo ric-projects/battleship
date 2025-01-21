@@ -1,4 +1,4 @@
-export { Ship, Board };
+export { Ship, Board, Player };
 console.log("objfac module connected");
 
 class Ship {
@@ -74,5 +74,13 @@ class Board {
       }
     }
     return true;
+  }
+}
+
+class Player {
+  constructor(name, auto) {
+    this.name = name;
+    this.automated = auto;
+    this.board = new Board();
   }
 }

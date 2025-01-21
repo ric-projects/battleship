@@ -1,15 +1,14 @@
 import { describe, expect, test } from "@jest/globals";
-import { Ship, Board } from "./objectFactories.js";
-// describe("sum module", () => {
-//   test("adds 1 + 2 to equal 3", () => {
-//     expect(sum(1, 2)).toBe(3);
-//   });
-// });
+import { Ship, Board, Player } from "./objectFactories.js";
 
 const testShip = new Ship(2);
 const testBoard = new Board();
 testBoard.createNewBoard();
 const testShip2 = new Ship(3);
+const player1 = new Player("player 1", false);
+player1.board.createNewBoard();
+const player2 = new Player("pc", true);
+player2.board.createNewBoard();
 
 test("Test Ship", () => {
   expect(testShip.hits).toBe(0);
@@ -45,4 +44,10 @@ test("Test Board", () => {
   expect(testBoard.receiveAttack(4, 4)).toBe(undefined);
 
   expect(testBoard.anyRemainingShips()).toBe(true);
+});
+
+test("Player class", () => {
+  expect(player1.board.allSunk).toBe(false);
+
+  expect(player2.board.board[3][4].empty).toBe(true);
 });
