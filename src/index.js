@@ -9,6 +9,7 @@ const testBoard = new Board();
 testBoard.createNewBoard();
 const testShip2 = new Ship(3);
 
-testBoard.placeShip(3, 4, testShip2);
-testBoard.receiveAttack(3, 4);
+// testBoard.placeShip(3, 4, testShip2);
+// testBoard.receiveAttack(3, 4);
+// testBoard.anyRemainingShips();
 console.log("test");

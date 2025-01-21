@@ -60,12 +60,19 @@ class Board {
       this.board[x][y].missedShot = true;
     } else if (this.board[x][y].empty == false) {
       this.board[x][y].ship.hit();
+      this.board[x][y].isShot = true;
     }
   }
 
-  anyRemainingShips() {}
+  anyRemainingShips() {
+    if (this.board.allSunk == true) return false;
+    for (let i = 0; i < this.board.length; i++) {
+      for (let j = 0; j < this.board[i].length; j++) {
+        if (this.board[i][j].empty == false) {
+          if (this.board[i][j].ship.isSunk() == false) return true;
+        }
+      }
+    }
+    return true;
+  }
 }
-
-// const testBoard = new Board();
-// testBoard.createNewBoard();
-// console.log("test");

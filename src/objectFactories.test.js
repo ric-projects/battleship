@@ -21,12 +21,16 @@ test("Test Ship", () => {
 });
 
 test("Test Board", () => {
+  // check boardsize and placement
   expect(testBoard.board[8][8]).toStrictEqual({
     empty: true,
     missedShot: false,
     ship: null,
     isShot: false,
-  }); /*check boardsize and placement*/
+  });
+  expect(testBoard.anyRemainingShips()).toBe(true);
+
+  // Places a ship
   expect(testBoard.placeShip(3, 4, testShip2)).toBe(undefined);
   expect(testBoard.board[3][4].empty).toBe(false);
   expect(testBoard.board[3][4].ship.length).toBe(3);
@@ -37,7 +41,8 @@ test("Test Board", () => {
   expect(testBoard.board[3][4].isShot).toBe(true);
   expect(testBoard.board[3][5].isShot).toBe(false);
 
-  expect(testBoard.receiveAttack(4, 4)).toBe();
+  // testing missed shots
+  expect(testBoard.receiveAttack(4, 4)).toBe(undefined);
 
   expect(testBoard.anyRemainingShips()).toBe(true);
 });
