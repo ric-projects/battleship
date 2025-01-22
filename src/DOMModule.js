@@ -1,5 +1,5 @@
 // import { player1, player2 } from "./index.js";
-import { Player } from "./objectFactories.js";
+// import { Player } from "./objectFactories.js";
 export { renderBoard };
 
 // const p1 = player1;
@@ -43,7 +43,7 @@ function renderBoard(player, board) {
       if (player.board.board[i][j].empty == false) {
         if (player.board.board[i][j].missedShot === true)
           div2.textContent = "00";
-        if (player.board.board[i][j].ship === true) div2.textContent = "S";
+        if (player.board.board[i][j].ship !== null) div2.textContent = "S";
         if (
           player.board.board[i][j].ship != null &&
           player.board.board[i][j].isShot === true

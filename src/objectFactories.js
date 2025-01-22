@@ -1,4 +1,5 @@
 export { Ship, Board, Player };
+import { renderBoard } from "./DOMModule.js";
 console.log("objfac module connected");
 
 class Ship {
