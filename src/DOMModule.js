@@ -1,6 +1,7 @@
 // import { player1, player2 } from "./index.js";
 // import { Player } from "./objectFactories.js";
-export { renderBoard };
+export { renderBoard, p1Board, p2Board };
+import { attack, newGame, placeShip, player2 } from "./objectFactories.js";
 
 // const p1 = player1;
 // const p2 = player2;
@@ -40,6 +41,11 @@ function renderBoard(player, board) {
       const div2 = document.createElement("div2");
       div2.id = "r" + i + j;
       div2.classList.add("div2");
+
+      div2.addEventListener("click", () => {
+        attack(i, j, player2, p2Board);
+      });
+
       if (player.board.board[i][j].empty == false) {
         if (player.board.board[i][j].missedShot === true)
           div2.textContent = "00";
@@ -56,6 +62,15 @@ function renderBoard(player, board) {
   }
 }
 
+const p1Board = document.querySelector(".boardP1");
+const p2Board = document.querySelector(".boardP2");
+
+const instructions = document.querySelector(".instructions");
+const newGameBtn = document.querySelector(".newGame");
+newGameBtn.addEventListener("click", () => {
+  newGame();
+  instructions.textContent = `P1's turn`;
+});
 // renderBoard(player1, p1Board);
 
 // player1.board.receiveAttack(3, 4);

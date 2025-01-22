@@ -1,5 +1,8 @@
-export { Ship, Board, Player };
-import { renderBoard } from "./DOMModule.js";
+export { Ship, Board, Player, attack, placeShip, newGame, player2 };
+import { renderBoard, p1Board, p2Board } from "./DOMModule.js";
+
+// let p2board = p2Board;
+
 console.log("objfac module connected");
 
 class Ship {
@@ -83,5 +86,37 @@ class Player {
     this.name = name;
     this.automated = auto;
     this.board = new Board();
+    this.turn = true;
   }
+
+  // switchTurns() {
+  //   if (this.turn == true) this.turn = false;
+  // }
 }
+
+function attack(x, y, p2, DOMboard) {
+  p2.board.receiveAttack(x, y);
+  renderBoard(p2, DOMboard);
+}
+
+function placeShip(x, y, length, player, DOMboard) {
+  if (y + length > 9) y = 10 - length;
+  const newShip = new Ship(length);
+  player.board.placeShip(x, y, newShip);
+  renderBoard(player, DOMboard);
+}
+
+let player2, player1;
+
+function newGame() {
+  player1 = new Player("player 1", false);
+  player1.board.createNewBoard();
+  renderBoard(player1, p1Board);
+  player2 = new Player("pc", true);
+  player2.board.createNewBoard();
+  renderBoard(player2, p2Board);
+
+  return { player1, player2 };
+}
+// let p1 = newGame().player1;
+// let p2 = newGame().player2;

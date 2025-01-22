@@ -46,6 +46,25 @@ body {
   display: flex;
   justify-content: center;
 }
+.legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.instructions {
+  border: 2px solid darkgreen;
+  width: 30%;
+  height: 4vh;
+  border-radius: 10px;
+  background-color: darkgray;
+  /* font-size: large; */
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
 
 .boardP1 > div,
 .boardP2 > div {
