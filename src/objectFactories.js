@@ -62,7 +62,10 @@ class Board {
     if (this.board[x][y].empty == true) {
       this.board[x][y].empty = false;
       this.board[x][y].missedShot = true;
-    } else if (this.board[x][y].empty == false) {
+    } else if (
+      this.board[x][y].empty === false &&
+      this.board[x][y].missedShot === false
+    ) {
       this.board[x][y].ship.hit();
       this.board[x][y].isShot = true;
     }
