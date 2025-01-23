@@ -114,12 +114,36 @@ let player2, player1;
 function newGame() {
   player1 = new Player("player 1", false);
   player1.board.createNewBoard();
+  // To add placement randomizer
+  randomizeShips(player1, p1Board);
+
   renderBoard(player1, p1Board);
   player2 = new Player("pc", true);
   player2.board.createNewBoard();
+  // to add cpu plac randomizer
+  randomizeShips(player2, p2Board);
   renderBoard(player2, p2Board);
 
   return { player1, player2 };
 }
-// let p1 = newGame().player1;
-// let p2 = newGame().player2;
+
+function randomizeShips(player, DOMboard) {
+  const shipSizes = [2, 3, 3, 4, 5];
+  let x, y;
+  let previousX = [];
+  for (let i = 0; i < shipSizes.length; i++) {
+    x = Math.round(Math.random() * 9);
+    y = Math.round(Math.random() * 9);
+    if (y + i > 9) y = 9 - i;
+    while (
+      player.board.board[x][y].empty === false ||
+      previousX.includes(x) === true
+    ) {
+      x = Math.round(Math.random() * 9);
+      y = Math.round(Math.random() * 9);
+    }
+    previousX.push(x);
+    placeShip(x, y, shipSizes[i], player, DOMboard);
+    console.log(x, y, player);
+  }
+}

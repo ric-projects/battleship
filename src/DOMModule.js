@@ -42,9 +42,11 @@ function renderBoard(player, board) {
       div2.id = "r" + i + j;
       div2.classList.add("div2");
 
-      div2.addEventListener("click", () => {
-        attack(i, j, player2, p2Board);
-      });
+      if (board.className == "boardP2") {
+        div2.addEventListener("click", () => {
+          attack(i, j, player2, p2Board);
+        });
+      }
 
       if (player.board.board[i][j].empty == false) {
         if (player.board.board[i][j].missedShot === true)
