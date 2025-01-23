@@ -98,9 +98,16 @@ class Player {
   // }
 }
 
-function attack(x, y, p2, DOMboard) {
+function attack(x, y, p2, DOMboard, run = 0) {
   p2.board.receiveAttack(x, y);
   renderBoard(p2, DOMboard);
+  // call gamedriver for turn and pc run
+  if (run == 0) {
+    run++;
+    let x, y;
+
+    attack(2, 3, player1, p1Board, run);
+  }
 }
 
 function placeShip(x, y, length, player, DOMboard) {
@@ -149,6 +156,11 @@ function randomizeShips(player, DOMboard) {
     }
     previousX.push(x);
     placeShip(x, y, shipSizes[i], player, DOMboard);
-    console.log(x, y, player);
+    // console.log(x, y, player);
   }
 }
+
+// function gameDriver() {
+//   // let x, y;
+
+// }
