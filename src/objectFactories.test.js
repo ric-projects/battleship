@@ -1,5 +1,9 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { describe, expect, test } from "@jest/globals";
-import { Ship, Board, Player } from "./objectFactories.js";
+import { Ship, Board, Player, randomNo } from "./objectFactories.js";
 
 const testShip = new Ship(2);
 const testBoard = new Board();
@@ -50,4 +54,10 @@ test("Player class", () => {
   expect(player1.board.allSunk).toBe(false);
 
   expect(player2.board.board[3][4].empty).toBe(true);
+});
+
+test("random function", () => {
+  const value = randomNo();
+  expect(value).toBeGreaterThanOrEqual(0);
+  expect(value).toBeLessThanOrEqual(9);
 });

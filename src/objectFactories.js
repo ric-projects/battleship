@@ -1,4 +1,5 @@
-export { Ship, Board, Player, attack, placeShip, newGame, player2 };
+export { Ship, Board, Player, attack, placeShip, newGame, player2, randomNo };
+// To comment the import lines when running tests, it imports DOM Modules
 import { renderBoard, p1Board, p2Board } from "./DOMModule.js";
 
 // let p2board = p2Board;
@@ -127,20 +128,24 @@ function newGame() {
   return { player1, player2 };
 }
 
+function randomNo() {
+  return Math.round(Math.random() * 9);
+}
+
 function randomizeShips(player, DOMboard) {
   const shipSizes = [2, 3, 3, 4, 5];
   let x, y;
   let previousX = [];
   for (let i = 0; i < shipSizes.length; i++) {
-    x = Math.round(Math.random() * 9);
-    y = Math.round(Math.random() * 9);
+    x = randomNo();
+    y = randomNo();
     if (y + i > 9) y = 9 - i;
     while (
       player.board.board[x][y].empty === false ||
       previousX.includes(x) === true
     ) {
-      x = Math.round(Math.random() * 9);
-      y = Math.round(Math.random() * 9);
+      x = randomNo();
+      y = randomNo();
     }
     previousX.push(x);
     placeShip(x, y, shipSizes[i], player, DOMboard);
