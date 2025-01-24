@@ -100,16 +100,19 @@ class Player {
   //   if (this.turn == true) this.turn = false;
   // }
 }
+let winner;
 
 function attack(x, y, p2, DOMboard, run = 0) {
+  // let winner;
   if (
     p2.board.board[x][y].isShot === false &&
-    p2.board.board[x][y].missedShot === false
+    p2.board.board[x][y].missedShot === false &&
+    winner == null
   ) {
     p2.board.receiveAttack(x, y);
     renderBoard(p2, DOMboard);
     if (p2.board.anyRemainingShips() === false) {
-      let winner;
+      // let winner;
       DOMboard.className == "boardP2" ? (winner = "P1") : (winner = "CPU");
       declareWinner(winner);
     }
