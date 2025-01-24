@@ -1,6 +1,6 @@
 export { Ship, Board, Player, attack, placeShip, newGame, player2, randomNo };
 // To comment the import lines when running tests, it imports DOM Modules
-import { renderBoard, p1Board, p2Board } from "./DOMModule.js";
+import { renderBoard, p1Board, p2Board, declareWinner } from "./DOMModule.js";
 
 // let p2board = p2Board;
 
@@ -76,12 +76,15 @@ class Board {
     if (this.board.allSunk == true) return false;
     for (let i = 0; i < this.board.length; i++) {
       for (let j = 0; j < this.board[i].length; j++) {
-        if (this.board[i][j].empty == false) {
+        if (
+          this.board[i][j].empty == false &&
+          this.board[i][j].missedShot === false
+        ) {
           if (this.board[i][j].ship.isSunk() == false) return true;
         }
       }
     }
-    return true;
+    return false;
   }
 }
 
@@ -105,6 +108,11 @@ function attack(x, y, p2, DOMboard, run = 0) {
   ) {
     p2.board.receiveAttack(x, y);
     renderBoard(p2, DOMboard);
+    if (p2.board.anyRemainingShips() === false) {
+      let winner;
+      DOMboard.className == "boardP2" ? (winner = "P1") : (winner = "CPU");
+      declareWinner(winner);
+    }
     // call gamedriver for turn and pc run
     if (run == 0) {
       run++;

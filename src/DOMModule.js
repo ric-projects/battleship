@@ -1,6 +1,6 @@
 // import { player1, player2 } from "./index.js";
 // import { Player } from "./objectFactories.js";
-export { renderBoard, p1Board, p2Board };
+export { renderBoard, p1Board, p2Board, declareWinner };
 import { attack, newGame, placeShip, player2 } from "./objectFactories.js";
 
 // const p1 = player1;
@@ -62,6 +62,10 @@ function renderBoard(player, board) {
     }
     board.appendChild(div);
   }
+}
+
+function declareWinner(player) {
+  instructions.textContent = `${player} won this round.`;
 }
 
 const p1Board = document.querySelector(".boardP1");
