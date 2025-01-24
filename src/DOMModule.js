@@ -51,7 +51,11 @@ function renderBoard(player, board) {
       if (player.board.board[i][j].empty == false) {
         if (player.board.board[i][j].missedShot === true)
           div2.textContent = "00";
-        if (player.board.board[i][j].ship !== null) div2.textContent = "S";
+        if (
+          player.board.board[i][j].ship !== null &&
+          board.className != "boardP2"
+        )
+          div2.textContent = "S";
         if (
           player.board.board[i][j].ship != null &&
           player.board.board[i][j].isShot === true
