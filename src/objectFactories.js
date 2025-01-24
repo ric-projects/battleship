@@ -99,14 +99,27 @@ class Player {
 }
 
 function attack(x, y, p2, DOMboard, run = 0) {
-  p2.board.receiveAttack(x, y);
-  renderBoard(p2, DOMboard);
-  // call gamedriver for turn and pc run
-  if (run == 0) {
-    run++;
-    let x, y;
-
-    attack(2, 3, player1, p1Board, run);
+  if (
+    p2.board.board[x][y].isShot === false &&
+    p2.board.board[x][y].missedShot === false
+  ) {
+    p2.board.receiveAttack(x, y);
+    renderBoard(p2, DOMboard);
+    // call gamedriver for turn and pc run
+    if (run == 0) {
+      run++;
+      let x, y;
+      x = randomNo();
+      y = randomNo();
+      while (
+        player1.board.board[x][y].missedShot === true ||
+        player1.board.board[x][y].isShot === true
+      ) {
+        x = randomNo();
+        y = randomNo();
+      }
+      attack(x, y, player1, p1Board, run);
+    }
   }
 }
 
