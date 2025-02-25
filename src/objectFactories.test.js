@@ -31,7 +31,7 @@ test("Test Board", () => {
     ship: null,
     isShot: false,
   });
-  expect(testBoard.anyRemainingShips()).toBe(true);
+  expect(testBoard.anyRemainingShips()).toBe(false);
 
   // Places a ship
   expect(testBoard.placeShip(3, 4, testShip2)).toBe(undefined);
