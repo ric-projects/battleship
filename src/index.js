@@ -1,4 +1,4 @@
-// import "./styles.css";
+import "./styles.css";
 import { Ship, Player, attack, placeShip } from "./objectFactories.js";
 import { renderBoard } from "./DOMModule.js";
 // export { attack };
